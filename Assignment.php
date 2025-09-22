@@ -24,31 +24,35 @@ i used the keyword named class , and after that it should have 2 attributes, so 
 why i used public specifically because , with public we can access outside the class as well
 and after that i created a Ccnstructor which sets the initial values when the account is created
 */
-    public function deposit($amount) {
-        if ($amount > 0) {
-            $this->balance = $this->balance + $amount;
-            echo "Deposited: " . $amount . "\n";
-            echo "Current Balance: " . $this->balance . "\n";
-        } else {
-            echo "Deposit amount should be greater than zero.\n";
-        }
+public function deposit($amount) {
+    if ($amount <= 0) {
+        echo "Deposit amount should be greater than zero.\n";
+        return;
     }
+
+    $this->balance += $amount;
+    echo "Deposited: $amount\n";
+    echo "Current Balance: $this->balance\n";
+}
+
 /* after that i created a method named deposit, which takes amount as the parameter
 and checks if the amount is greater than 0, if it is then it adds the amount or else it shows an error message 
 */
-    public function withdraw($amount) {
-        if ($amount > 0) {
-            if ($amount <= $this->balance) {
-                $this->balance = $this->balance - $amount;
-                echo "Withdrawn: " . $amount . "\n";
-                echo "Current Balance: " . $this->balance . "\n";
-            } else {
-                echo "Cannot withdraw. Not enough balance.\n";
-            }
-        } else {
-            echo "Withdraw amount must be more than zero.\n";
-        }
+public function withdraw($amount) {
+    if ($amount <= 0) {
+        echo "Withdraw amount must be more than zero.\n";
+        return;
     }
+
+    if ($amount > $this->balance) {
+        echo "Cannot withdraw. Not enough balance.\n";
+        return;
+    }
+
+    $this->balance -= $amount;
+    echo "Withdrawn: $amount\n";
+    echo "Current Balance: $this->balance\n";
+}
 }
 /* after that i created a method named withdraw, which takes amount as the parameter
 and checks if the amount is greater than 0, if it is then it checks if the 
@@ -57,7 +61,7 @@ else it shows and error message
 */
 
 // Created a new bank account
-$account1 = new BankAccount("Praneeth", 12000); 
+$account1 = new BankAccount("Praneeth", 12000);
 
 // Show my details
 echo "Account Owner: " . $account1->owner . "\n";
