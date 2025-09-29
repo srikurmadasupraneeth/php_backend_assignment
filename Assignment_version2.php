@@ -1,5 +1,5 @@
 <?php
-class BankAccount { 
+class bankAccount { 
     public $owner;   
     public $balance;
     public $email;
@@ -44,19 +44,17 @@ class BankAccount {
 
     // Method to return account details in JSON format
     public function toJSON() {
-        $transaction = [
+        return json_encode([
             "name" => $this->owner,
             "email" => $this->email,
             "mobileNumber" => $this->mobileNumber,
-            "currentBalance" => $this->balance, 
-        ];
-
-        return json_encode($transaction);
+            "currentBalance" => $this->balance
+        ]);
     }
 }
 
 // Created a new bank account with email and mobile number
-$account1 = new BankAccount("Praneeth", "Praneethpjsf123@gmail.com", 7702763357, 12000);
+$account1 = new bankAccount("Praneeth", "Praneethpjsf123@gmail.com", 7702763357, 12000);
 
 // Show account details
 echo "Account Owner: " . $account1->owner . "\n";
